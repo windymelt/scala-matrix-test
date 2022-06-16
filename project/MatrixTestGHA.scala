@@ -11,7 +11,7 @@ object MatrixTestGHA {
 
   private val md5digest = MessageDigest.getInstance("MD5")
   private def calcTestDigest(s: String): Byte = {
-    md5digest.digest(s.getBytes()).last
+    md5digest.digest(s.getBytes()).last.abs
   }
 
   def filterTestIfMatrix(s: String): Boolean = {
