@@ -19,6 +19,7 @@ object MatrixTestGHA {
       case None => true
       case Some(matrixId) =>
         val testNameDigest = calcTestDigest(s) % matrixSize.get
+        println(s"this test is $testNameDigest: this job is for $matrixId")
         testNameDigest == matrixId
     }
   }
