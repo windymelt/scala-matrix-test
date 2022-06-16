@@ -8,6 +8,10 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        test_id: ["0", "1", "2", "3"]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -19,6 +23,9 @@ jobs:
       - name: Coursier cache
         uses: coursier/cache-action@v6
       - name: sbt test
+        env:
+          MATRIX_TEST_ID: "${{ matrix.test_id }}"
+          MATRIX_SIZE: 4 # Be careful to sync with matrix.test_id above.
         run: sbt test
       - name: Cleanup before cache
         shell: bash
